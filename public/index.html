@@ -1,0 +1,1357 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Outdoor Experience Program | UC Merced</title>
+<link rel="icon" href="/brand/ucm-boomer-icon.svg">
+<link rel="stylesheet" href="/brand/fonts/fonts.css">
+<style>
+/* ---------------------------------------------------------------------------
+   UC Merced brand implementation.
+
+   Colors are from the official brand guide
+   (uc-merced.foleon.com/public-relations/ucmerced-brand/colors) and match the
+   values in the live site's own stylesheet
+   (ucmerced.edu/sites/all/themes/jango/jango_sub/css/custom.css).
+
+   Type follows what ucmerced.edu serves: Bebas Neue for display headings
+   (uppercase), Open Sans for body. The brand's official face, Kievit Offc Pro,
+   is commercially licensed and not distributable, so it leads each stack for
+   anyone who has it installed and nothing depends on it.
+
+   The guide's rule is "stick primarily to Boomer Blue and Bobcat Gold, using
+   secondary colors sparingly," with one dominant color per layout. Boomer Blue
+   dominates, gold is the single accent, and the secondary green and orange
+   appear only in status pills, where they carry meaning.
+--------------------------------------------------------------------------- */
+:root {
+  --boomer-blue: #002856;   /* PMS 295 */
+  --bobcat-gold: #DAA900;   /* PMS 110 */
+  --logo-navy: #0F2D52;
+  --blue-1: #0091B3;        /* PMS 632  */
+  --blue-2: #005487;        /* PMS 7692 */
+  --blue-heading: #007CBA;  /* the h4 color in their stylesheet */
+  --gold-2: #FFBF3C;        /* PMS 136  */
+  --gold-shade: #BE882C;
+  --gold-tint: #F6E9D7;
+  --green: #6BA43A;         /* PMS 7737 */
+  --green-shade: #395A2A;
+  --green-tint: #D3E5A6;
+  --orange: #F18A00;        /* PMS 144  */
+  --orange-shade: #C56828;
+  --orange-tint: #FED7B4;
+  --gray-1: #5B5B5B;
+  --gray-2: #E5E5E5;
+  --gray-3: #EFEFEF;
+  --white: #ffffff;
+
+  --ink: #1a1a1a;
+  --muted: var(--gray-1);
+  --line: var(--gray-2);
+  --bg: var(--gray-3);
+  --panel: var(--white);
+
+  --sans: "KievitOffcPro", "Kievit Offc Pro", "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --display: "Bebas Neue", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+* { box-sizing: border-box; }
+body { margin: 0; background: var(--white); color: var(--ink);
+       font: 15px/1.6 var(--sans); -webkit-font-smoothing: antialiased; }
+img { max-width: 100%; }
+[hidden] { display: none !important; }
+
+/* ---------------------------------------------------------------- masthead */
+.masthead { background: var(--white); border-bottom: 3px solid var(--bobcat-gold);
+  padding: 14px 24px; display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+.masthead img.logo { height: 30px; width: auto; display: block; }
+.masthead .divider { width: 1px; height: 30px; background: var(--line); }
+.masthead h1 { font: 400 21px/1.05 var(--display); text-transform: uppercase;
+  letter-spacing: 0.01em; color: var(--boomer-blue); margin: 0; min-width: 0; }
+.masthead h1 span { color: var(--blue-heading); }
+.masthead .right { margin-left: auto; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; }
+.wholine { font-size: 13px; color: var(--muted); }
+.wholine b { color: var(--boomer-blue); }
+
+/* -------------------------------------------------------------------- hero */
+.hero { position: relative; min-height: 460px; display: flex; align-items: flex-end;
+        overflow: hidden; background: var(--boomer-blue); }
+.hero img { position: absolute; inset: 0; width: 100%; height: 100%;
+            object-fit: cover; object-position: center 42%; }
+.hero .scrim { position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(0,40,86,0.30) 0%, rgba(0,40,86,0.55) 55%, rgba(0,40,86,0.88) 100%); }
+.hero .inner { position: relative; padding: 64px 24px 40px; width: 100%; max-width: 1240px; margin: 0 auto; }
+/* stacked oversized headline, after the brand standards page */
+.hero h2 { font: 400 clamp(52px, 9.5vw, 120px)/0.86 var(--display);
+  text-transform: uppercase; color: var(--white); margin: 0; letter-spacing: 0.005em; }
+.hero h2 em { font-style: normal; color: var(--gold-2); display: block; }
+.hero .rule { width: 96px; height: 6px; background: var(--bobcat-gold); margin: 22px 0 18px; }
+.hero p { color: rgba(255,255,255,0.92); font-size: 17px; max-width: 52ch; margin: 0 0 22px; }
+
+/* --------------------------------------------------------------- stat band */
+.statband { background: var(--boomer-blue); color: var(--white); }
+/* full-bleed navy, but the figures line up with the content column */
+.statband .inner { max-width: 1240px; margin: 0 auto; padding: 0 24px;
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.statband .inner > div { padding: 22px 0; }
+.statband .inner > div + div { padding-left: 32px; border-left: 1px solid rgba(255,255,255,0.14); }
+.statband .n { font: 400 42px/1 var(--display); color: var(--gold-2); display: block; }
+.statband .l { font-size: 11px; text-transform: uppercase; letter-spacing: 0.09em;
+  color: rgba(255,255,255,0.78); font-weight: 600; }
+
+/* ----------------------------------------------------------------- section */
+.wrap { max-width: 1240px; margin: 0 auto; padding: 0 24px; }
+.section { padding: 56px 0; }
+.section-head { display: flex; align-items: baseline; gap: 16px; flex-wrap: wrap;
+  margin-bottom: 6px; }
+.section-head h2 { font: 400 clamp(34px, 4.6vw, 52px)/0.95 var(--display);
+  text-transform: uppercase; color: var(--boomer-blue); margin: 0; }
+.section-head .count { font-size: 12px; text-transform: uppercase; letter-spacing: 0.08em;
+  font-weight: 700; color: var(--blue-heading); }
+.section .lede { color: var(--muted); max-width: 62ch; margin: 0 0 26px; }
+.goldrule { width: 72px; height: 5px; background: var(--bobcat-gold); margin: 0 0 24px; }
+
+/* ------------------------------------------------------------------- cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 26px; }
+.card { border: 1px solid var(--line); background: var(--white); display: flex;
+  flex-direction: column; transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out; }
+.card:hover { box-shadow: 0 10px 28px rgba(0,40,86,0.14); transform: translateY(-2px); }
+.card .shot { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--gray-2); }
+.card .shot img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.card .shot .tags { position: absolute; left: 0; bottom: 0; display: flex; }
+.card .shot .tags span { background: var(--boomer-blue); color: var(--white);
+  font-size: 10.5px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em;
+  padding: 5px 10px; }
+.card .shot .tags span.full { background: var(--orange-shade); }
+.card .shot .tags span.open { background: var(--green-shade); }
+.card .body { padding: 16px 18px 18px; display: flex; flex-direction: column; flex: 1; }
+.cards .card h3 { font: 400 25px/1.05 var(--display); text-transform: uppercase;
+  color: var(--boomer-blue); margin: 0 0 8px; }
+.card .when { font-size: 13px; color: var(--muted); margin-bottom: 12px; }
+.card .facts { display: flex; gap: 14px; font-size: 12.5px; color: var(--ink);
+  border-top: 1px solid var(--line); padding-top: 11px; margin-top: auto; flex-wrap: wrap; }
+.card .facts b { color: var(--boomer-blue); font-weight: 700; }
+.card .act { margin-top: 14px; display: flex; gap: 8px; }
+.card .act button { flex: 1; }
+.meter { height: 5px; background: var(--gray-2); margin-bottom: 12px; }
+.meter i { display: block; height: 100%; background: var(--green); }
+.meter i.full { background: var(--orange-shade); }
+
+/* --------------------------------------------------------------- photoband */
+.photoband { position: relative; min-height: 300px; display: flex; align-items: center;
+  overflow: hidden; background: var(--boomer-blue); }
+.photoband img { position: absolute; inset: 0; width: 100%; height: 100%;
+  object-fit: cover; object-position: center 55%; }
+.photoband .scrim { position: absolute; inset: 0; background: rgba(0,40,86,0.72); }
+.photoband .inner { position: relative; max-width: 1240px; margin: 0 auto;
+  padding: 52px 24px; width: 100%; }
+.photoband h2 { font: 400 clamp(30px, 4.4vw, 50px)/0.98 var(--display);
+  text-transform: uppercase; color: var(--white); margin: 0 0 14px; max-width: 20ch; }
+.photoband p { color: rgba(255,255,255,0.9); max-width: 56ch; margin: 0; }
+
+/* ------------------------------------------------------------------ mytrips */
+.mytrip { border: 1px solid var(--line); border-left: 5px solid var(--green);
+  padding: 14px 16px; margin-bottom: 12px; display: flex; gap: 16px;
+  align-items: center; flex-wrap: wrap; }
+.mytrip.waitlisted { border-left-color: var(--gold-shade); }
+.mytrip.cancelled, .mytrip.no_show { border-left-color: var(--orange-shade); }
+.mytrip.completed { border-left-color: var(--gray-1); }
+.mytrip h4 { font: 400 21px/1 var(--display); text-transform: uppercase;
+  color: var(--boomer-blue); margin: 0 0 4px; }
+.mytrip .meta { font-size: 12.5px; color: var(--muted); }
+.mytrip .act { margin-left: auto; }
+
+/* ------------------------------------------------------------------ footer */
+/* The standard UC Merced campus footer, reproduced from ucmerced.edu.
+   Front page only: the signed-in console is an internal tool, not a public
+   campus page, so it does not carry campus chrome. */
+.campus-footer { background: var(--boomer-blue); border-top: 2px solid var(--bobcat-gold);
+  padding: 20px 56px; position: relative; }
+.campus-footer ul { list-style: none; margin: 0 auto; padding: 0; max-width: 1240px;
+  display: flex; flex-wrap: wrap; justify-content: center; align-items: center;
+  gap: 8px 26px; }
+.campus-footer li { color: rgba(255,255,255,0.92); font-size: 14px; }
+.campus-footer a { color: rgba(255,255,255,0.92); text-decoration: none; }
+.campus-footer a:hover, .campus-footer a:focus { color: var(--gold-2); text-decoration: underline; }
+.campus-footer .totop { position: absolute; right: 20px; top: 50%; transform: translateY(-50%);
+  background: none; border: none; padding: 6px; line-height: 0;
+  color: rgba(255,255,255,0.42); cursor: pointer; }
+.campus-footer .totop:hover { background: none; color: var(--white); }
+
+/* ------------------------------------------------------------------ modal */
+.modal { position: fixed; inset: 0; background: rgba(0,40,86,0.55);
+  display: flex; align-items: center; justify-content: center; padding: 20px; z-index: 50; }
+.sheet { background: var(--white); border-top: 6px solid var(--bobcat-gold);
+  max-width: 460px; width: 100%; padding: 26px 26px 22px;
+  max-height: 84vh; overflow-y: auto; }   /* the name list can be long */
+.sheet h2 { font: 400 32px/1 var(--display); text-transform: uppercase;
+  color: var(--boomer-blue); margin: 0 0 10px; }
+.sheet label { display: block; margin: 14px 0 5px; font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em; color: var(--boomer-blue); }
+.sheet select { width: 100%; }
+.sheet .choices { display: flex; flex-direction: column; gap: 10px; margin-top: 18px; }
+.sheet .choices button { width: 100%; padding: 15px; font-size: 13px; }
+.sheet .choices button.person { background: transparent; color: var(--boomer-blue);
+  text-transform: none; letter-spacing: 0; font-size: 14.5px; padding: 12px 15px; text-align: left; }
+.sheet .choices button.person:hover { background: var(--boomer-blue); color: var(--white); }
+
+/* ------------------------------------------- notices shown in the site view */
+.notice { padding: 12px 16px; margin-bottom: 18px; border-left: 5px solid var(--green);
+  background: var(--green-tint); color: var(--green-shade); font-size: 14px; font-weight: 600; }
+.notice.wait { border-left-color: var(--gold-shade); background: var(--gold-tint); color: var(--gold-shade); }
+.notice.bad  { border-left-color: var(--orange-shade); background: var(--orange-tint); color: var(--orange-shade); }
+
+/* ---------------------------------------------------------- staff console */
+.navbar { background: var(--boomer-blue); padding: 0 24px; display: flex;
+  align-items: stretch; gap: 24px; flex-wrap: wrap; position: sticky; top: 0; z-index: 10; }
+nav { display: flex; gap: 2px; flex-wrap: wrap; }
+nav button { background: none; border: none; border-bottom: 3px solid transparent;
+  color: rgba(255,255,255,0.72); font: 600 12.5px/1 var(--sans); text-transform: uppercase;
+  letter-spacing: 0.07em; padding: 15px 14px 12px; cursor: pointer; transition: all 0.2s ease-in-out; }
+nav button:hover { color: var(--white); background: rgba(255,255,255,0.06); }
+nav button[aria-selected="true"] { color: var(--white); border-bottom-color: var(--bobcat-gold); }
+.identity { margin-left: auto; display: flex; align-items: center; gap: 8px;
+  flex-wrap: wrap; padding: 8px 0; }
+.identity label { color: rgba(255,255,255,0.7); font-size: 11px; text-transform: uppercase;
+  letter-spacing: 0.07em; font-weight: 600; }
+.identity select { background: rgba(255,255,255,0.1); color: var(--white);
+  border: 1px solid rgba(255,255,255,0.3); border-radius: 0; padding: 4px 8px; }
+.identity select option { color: var(--ink); }
+#whoami { color: rgba(255,255,255,0.55); font-family: var(--mono); font-size: 10.5px; }
+
+main { display: grid; grid-template-columns: minmax(0,1fr) 390px; gap: 18px;
+  padding: 18px 24px 48px; align-items: start; background: var(--bg); }
+main > * { min-width: 0; }
+@media (max-width: 980px) { main { grid-template-columns: minmax(0,1fr); } }
+
+.panel { background: var(--panel); border: 1px solid var(--line); padding: 18px 20px; margin-bottom: 18px; }
+.panel > h2 { font: 400 20px/1 var(--display); text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--boomer-blue); margin: 0 0 14px; padding-bottom: 10px;
+  border-bottom: 2px solid var(--boomer-blue); }
+.panel h3 { font: 400 17px/1.15 var(--display); text-transform: uppercase; letter-spacing: 0.02em;
+  color: var(--blue-heading); margin: 20px 0 8px; }
+.hint { color: var(--muted); font-size: 12.5px; margin: -4px 0 14px; }
+.row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin-bottom: 10px; }
+.grid2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(155px, 1fr)); gap: 8px; }
+fieldset { border: 1px solid var(--line); padding: 14px; margin: 0 0 14px; }
+legend { color: var(--boomer-blue); font-size: 11px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.07em; padding: 0 8px; }
+
+/* ---------------------------------------------------------------- controls */
+select, input, textarea { font: inherit; font-size: 13.5px; color: inherit;
+  background: var(--white); border: 1px solid #c9cbc7; border-radius: 0; padding: 6px 9px; min-width: 0; }
+select:focus, input:focus { outline: 2px solid var(--blue-1); outline-offset: -1px; }
+label { color: var(--muted); font-size: 12px; }
+button { font: 600 12px/1 var(--sans); text-transform: uppercase; letter-spacing: 0.05em;
+  background: var(--boomer-blue); color: var(--white); border: 1px solid var(--boomer-blue);
+  border-radius: 0; padding: 9px 16px; cursor: pointer; transition: all 0.2s ease-in-out; }
+button:hover { background: var(--logo-navy); border-color: var(--logo-navy); }
+button:disabled { opacity: 0.5; cursor: default; }
+button.plain { background: transparent; color: var(--boomer-blue); }
+button.plain:hover { background: var(--boomer-blue); color: var(--white); }
+button.gold { background: var(--bobcat-gold); border-color: var(--bobcat-gold); color: var(--boomer-blue); }
+button.gold:hover { background: var(--gold-2); border-color: var(--gold-2); }
+button.sm { padding: 5px 10px; font-size: 11px; letter-spacing: 0.04em; }
+button.filter { background: transparent; color: var(--muted); border-color: var(--line); }
+button.filter[aria-pressed="true"] { background: var(--boomer-blue); color: var(--white);
+  border-color: var(--boomer-blue); }
+button.filter:hover { border-color: var(--boomer-blue); color: var(--boomer-blue); }
+button.filter[aria-pressed="true"]:hover { background: var(--logo-navy); color: var(--white); }
+.repsec { margin-bottom: 30px; }
+.repsec h3.rephead { color: var(--boomer-blue); font-size: 22px; margin: 0 0 10px;
+  padding-bottom: 8px; border-bottom: 2px solid var(--bobcat-gold); }
+button.danger { background: transparent; color: var(--orange-shade); border-color: var(--orange-shade); }
+button.danger:hover { background: var(--orange-shade); color: var(--white); }
+
+/* ------------------------------------------------------------------ tables */
+.scroll { overflow-x: auto; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { text-align: left; font-weight: 700; color: var(--boomer-blue); font-size: 10.5px;
+  text-transform: uppercase; letter-spacing: 0.06em; white-space: nowrap;
+  padding: 7px 12px 7px 0; border-bottom: 2px solid var(--boomer-blue); }
+td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line); vertical-align: middle; }
+tbody tr:hover { background: #f7f9fb; }
+tr:last-child td { border-bottom: none; }
+.empty { color: var(--muted); font-style: italic; padding: 10px 0; font-size: 13px; }
+
+/* ------- status pills: the only place the secondary colors are used -------- */
+.pill { display: inline-block; padding: 2px 9px; font-size: 10.5px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.05em;
+  background: var(--green-tint); color: var(--green-shade); }
+.pill.waitlisted, .pill.warning { background: var(--gold-tint); color: var(--gold-shade); }
+.pill.cancelled { background: var(--orange-tint); color: var(--orange-shade); }
+.pill.no_show, .pill.expired { background: var(--orange-shade); color: var(--white); }
+.pill.critical { background: var(--orange-tint); color: var(--orange-shade); }
+.pill.completed, .pill.draft { background: var(--gray-2); color: var(--gray-1); }
+.pill.open, .pill.ok { background: var(--green-tint); color: var(--green-shade); }
+
+/* --------------------------------------------------------------- API log -- */
+#log { max-height: 72vh; overflow-y: auto; display: flex; flex-direction: column; gap: 8px; }
+.entry { border: 1px solid var(--line); border-left: 4px solid var(--green);
+  padding: 8px 11px; font-family: var(--mono); font-size: 11px; background: var(--white); }
+.entry.rule { border-left-color: var(--orange-shade); background: var(--orange-tint); }
+.entry.err { border-left-color: var(--bobcat-gold); background: var(--gold-tint); }
+.entry .line { display: flex; gap: 8px; justify-content: space-between; font-weight: 700; }
+.entry .body { color: #4a4a4a; margin-top: 5px; white-space: pre-wrap;
+  word-break: break-word; max-height: 160px; overflow-y: auto; }
+.entry b { font-weight: 700; color: var(--boomer-blue); }
+.mono { font-family: var(--mono); font-size: 12px; }
+
+  background: var(--white); border: 1px solid var(--line); border-top: 5px solid var(--boomer-blue);
+  padding: 12px 14px; z-index: 40; box-shadow: 0 14px 40px rgba(0,40,86,0.22); }
+#sitelog h2 { font: 400 18px/1 var(--display); text-transform: uppercase;
+  color: var(--boomer-blue); margin: 0 0 10px; }
+#sitelog #log { max-height: 46vh; }
+
+@media (max-width: 700px) {
+  .masthead { padding: 12px 16px; gap: 12px; }
+  .masthead h1 { font-size: 17px; }
+  .masthead .divider { display: none; }
+  .navbar { padding: 0 16px; }
+  nav button { padding: 12px 10px 9px; font-size: 11.5px; }
+  main { padding: 14px 16px 40px; }
+  .panel { padding: 14px; }
+  .wrap, .statband .inner { padding: 0 16px; }
+  .hero .inner { padding: 48px 16px 32px; }
+  .campus-footer { padding: 18px 16px; }
+  .campus-footer ul { gap: 8px 18px; }
+  .campus-footer li { font-size: 13px; }
+  .campus-footer .totop { display: none; }
+  .section { padding: 40px 0; }
+}
+</style>
+</head>
+<body>
+
+<!-- ==================================================== member-facing site -->
+<div id="site">
+  <div class="masthead">
+    <img class="logo" src="/brand/ucm-logotype.svg" alt="UC Merced">
+    <div class="divider"></div>
+    <h1>Outdoor Experience Program</h1>
+    <div class="right">
+      <button id="siteSignIn">Sign in</button>
+    </div>
+  </div>
+
+  <section class="hero">
+    <img src="/brand/photos/hero-alpine.jpg" alt="OEP students crossing talus above an alpine lake in the Sierra Nevada">
+    <div class="scrim"></div>
+    <div class="inner">
+      <h2>Get<br>Outside<em>With OEP</em></h2>
+      <div class="rule"></div>
+      <p>Guided trips for UC Merced students, faculty and staff.</p>
+    </div>
+  </section>
+
+  <div class="statband"><div class="inner" id="statband"></div></div>
+
+  <div class="wrap">
+    <section class="section" id="tripsSection">
+      <div class="section-head">
+        <h2>Upcoming trips</h2>
+      </div>
+      <div class="goldrule"></div>
+      <p class="lede">Trips running over the next few months.</p>
+      <div class="cards" id="tripCards"></div>
+    </section>
+  </div>
+
+
+  <div class="campus-footer">
+    <ul>
+      <li>&copy; 2025</li>
+      <li><a href="https://www.ucmerced.edu/about" rel="noopener" target="_blank">About UC Merced</a></li>
+      <li><a href="https://www.ucmerced.edu/maps-and-directions" rel="noopener" target="_blank">Directions</a></li>
+      <li><a href="https://directory.ucmerced.edu/" rel="noopener" target="_blank">Directory</a></li>
+      <li><a href="https://www.ucmerced.edu/privacy-statement" rel="noopener" target="_blank">Privacy/Legal</a></li>
+      <li><a href="https://www.ucmerced.edu/contact-us" rel="noopener" target="_blank">Site Feedback</a></li>
+      <li><a href="https://regents.universityofcalifornia.edu/" rel="noopener" target="_blank">UC Regents</a></li>
+      <li><a href="https://accessibility.ucmerced.edu/web-accessibility" rel="noopener" target="_blank">Accessibility</a></li>
+      <li><a href="https://ophd.ucmerced.edu/policies-and-procedures/overview/nondiscrimination-policy-statement" rel="noopener" target="_blank">Nondiscrimination Policy</a></li>
+      <li><a href="https://www.ucmerced.edu/Site-List" rel="noopener" target="_blank">Site List</a></li>
+    </ul>
+    <button class="totop" id="toTop" aria-label="Back to top" title="Back to top">
+      <svg width="34" height="20" viewBox="0 0 34 20" fill="none" aria-hidden="true">
+        <path d="M2 18 L17 3 L32 18" stroke="currentColor" stroke-width="2.2"
+              stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+</div>
+
+<!-- ======================================================== staff console -->
+<div id="console" hidden>
+  <div class="masthead">
+    <img class="logo" src="/brand/ucm-logotype.svg" alt="UC Merced">
+    <div class="divider"></div>
+    <h1><span>OEP+</span></h1>
+    <div class="right">
+      <span class="wholine" id="consoleWho"></span>
+      <button class="plain" id="logOut">Log out</button>
+    </div>
+  </div>
+
+  <div class="navbar">
+    <nav id="tabs">
+      <button data-tab="trips"     data-roles="staff guide" aria-selected="true">Trips</button>
+      <button data-tab="browse"    data-roles="member">Trips</button>
+      <button data-tab="dashboard" data-roles="staff">Dashboard</button>
+      <button data-tab="mytrips"   data-roles="member">My trips</button>
+      <button data-tab="staff"     data-roles="staff">Staff tools</button>
+      <button data-tab="me"        data-roles="guide">My view</button>
+      <button data-tab="rules"     data-roles="staff">Rule tests</button>
+    </nav>
+  </div>
+
+  <main>
+    <div>
+      <section class="panel" data-panel="trips">
+        <h2>Trips</h2>
+        <div class="row">
+          <button id="loadTrips" class="plain">Reload</button>
+          <label><input type="checkbox" id="pastToo"> include past</label>
+        </div>
+        <div class="scroll"><div id="tripsTable"></div></div>
+        <div id="tripDetail"></div>
+      </section>
+
+      <section class="panel" data-panel="browse" hidden>
+        <h2>Trips</h2>
+        <p class="hint">Register for a trip, or join its waitlist if it is full.</p>
+        <div id="studentNotice"></div>
+        <div class="cards" id="consoleCards"></div>
+      </section>
+
+      <section class="panel" data-panel="mytrips" hidden>
+        <h2>My trips</h2>
+        <div id="consoleMyTrips"></div>
+      </section>
+
+      <section class="panel" data-panel="me" hidden>
+        <h2>My view</h2>
+        <p class="hint">What the selected member or guide can see about themselves.</p>
+        <div id="meBody"></div>
+      </section>
+
+      <section class="panel" data-panel="staff" hidden>
+        <h2>Staff tools</h2>
+        <p class="hint">Every action here is checked by the database, not by this page.</p>
+
+        <fieldset><legend>Assign a guide to a trip</legend>
+          <div class="grid2">
+            <select id="agTrip"></select>
+            <select id="agGuide"></select>
+            <select id="agRole">
+              <option value="assistant">assistant</option>
+              <option value="lead">lead</option>
+              <option value="trainee">trainee</option>
+            </select>
+            <button id="assignGuide">Assign</button>
+          </div>
+        </fieldset>
+
+        <fieldset><legend>Reserve equipment for a trip</legend>
+          <div class="grid2">
+            <select id="eqTrip"></select>
+            <select id="eqItem"></select>
+            <input id="eqQty" type="number" min="1" value="1" placeholder="qty">
+            <button id="reserveEq">Reserve</button>
+          </div>
+          <div class="row" style="margin-top:12px">
+            <label for="availFrom">Availability</label>
+            <input id="availFrom" type="date" value="2026-10-18">
+            <input id="availTo" type="date" value="2026-10-19">
+            <button id="checkAvail" class="plain">Check</button>
+          </div>
+          <div class="scroll"><div id="availTable"></div></div>
+        </fieldset>
+
+        <fieldset><legend>Gear in and out</legend>
+          <div class="row"><button id="loadCommit" class="plain">Load commitments</button></div>
+          <div class="scroll"><div id="commitTable"></div></div>
+        </fieldset>
+
+        <fieldset><legend>Create a trip</legend>
+          <div class="grid2">
+            <input id="ntName" placeholder="name">
+            <input id="ntDest" placeholder="destination">
+            <select id="ntDiff">
+              <option>easy</option><option>moderate</option>
+              <option>strenuous</option>
+            </select>
+            <input id="ntStart" type="date" value="2026-11-21">
+            <input id="ntEnd" type="date" value="2026-11-22">
+            <input id="ntCap" type="number" min="1" value="6" placeholder="capacity">
+            <input id="ntFee" type="number" min="0" value="5000" placeholder="fee (cents)">
+            <select id="ntCert"><option value="">no certification required</option></select>
+            <input id="ntMeeting" type="datetime-local" placeholder="pre-trip meeting">
+            <button id="createTrip">Create</button>
+          </div>
+        </fieldset>
+
+        <fieldset><legend>Pre-trip meeting sweep (rule 5)</legend>
+          <p class="hint">Cancels confirmed members who missed a mandatory meeting, then
+            promotes from the waitlist. Seed data has a meeting on 2026-09-10.</p>
+          <div class="row">
+            <input id="sweepAsOf" type="datetime-local" value="2026-09-11T08:00">
+            <button id="runSweep">Run sweep</button>
+          </div>
+          <div id="sweepOut"></div>
+        </fieldset>
+
+        <fieldset><legend>Override a registration</legend>
+          <div class="grid2">
+            <input id="ovId" type="number" placeholder="registration id">
+            <select id="ovField">
+              <option value="payment_status">payment_status</option>
+              <option value="attended_pre_trip_meeting">attended_pre_trip_meeting</option>
+              <option value="status">status</option>
+            </select>
+            <input id="ovValue" placeholder="paid / true / completed">
+            <button id="applyOverride">Apply</button>
+          </div>
+        </fieldset>
+      </section>
+
+      <section class="panel" data-panel="dashboard" hidden>
+        <h2>Dashboard</h2>
+        <p class="hint">Everything at once. Use the buttons to filter what is shown.</p>
+        <div class="row" id="dashFilters"></div>
+        <div id="reportOut"></div>
+      </section>
+
+      <section class="panel" data-panel="rules" hidden>
+        <h2>Rule tests</h2>
+        <p class="hint">Each button asks the API to do something the database must refuse.
+          Watch the log: a refusal comes back as <b>409</b> with the message Postgres raised.
+          Run these against freshly seeded data.</p>
+        <div id="ruleTests"></div>
+      </section>
+    </div>
+
+    <aside>
+      <section class="panel">
+        <h2>API log</h2>
+        <div class="row">
+          <button id="clearLog" class="plain">Clear</button>
+          <span class="hint" style="margin:0">newest first</span>
+        </div>
+        <div id="logHost"></div>
+      </section>
+    </aside>
+  </main>
+</div>
+
+<!-- the single log element, moved between the two hosts -->
+<div id="logCarrier" hidden><div id="log"></div></div>
+
+<!-- ============================================================== sign in -->
+<div class="modal" id="signin" hidden>
+  <div class="sheet">
+    <h2 id="siTitle">Sign in</h2>
+    <div class="choices" id="siRoles">
+      <button data-signrole="student">Student</button>
+      <button data-signrole="staff">Staff</button>
+      <button data-signrole="guide">Guide</button>
+    </div>
+    <div class="choices" id="siPeople" hidden></div>
+  </div>
+</div>
+
+<script>
+// ---------------------------------------------------------------------------
+// Two experiences share one API:
+//   the student site (default, browsable as a guest) and the staff console.
+// Identity is declared per request through X-Role / X-User-Id headers; there is
+// no authentication in this prototype, which is why signing in is a picker.
+// ---------------------------------------------------------------------------
+const state = {
+  role: 'guest', id: null, name: null,
+  members: [], guides: [], trips: [], equipment: [], certs: [],
+  myRegs: {},
+};
+
+const el = (id) => document.getElementById(id);
+
+// A session survives a browser refresh. It is a convenience for this prototype,
+// not a credential: it holds only the role and id the API already takes in
+// headers, and Log out is the only thing that clears it.
+const SESSION_KEY = 'oep.session';
+function saveSession() {
+  try {
+    localStorage.setItem(SESSION_KEY,
+      JSON.stringify({ role: state.role, id: state.id, name: state.name }));
+  } catch { /* private window or blocked storage: the session is just not sticky */ }
+}
+function clearSession() {
+  try { localStorage.removeItem(SESSION_KEY); } catch { /* nothing to clean up */ }
+}
+function readSession() {
+  try {
+    const raw = localStorage.getItem(SESSION_KEY);
+    const v = raw ? JSON.parse(raw) : null;
+    return v && ['staff', 'guide', 'member'].includes(v.role) ? v : null;
+  } catch { return null; }
+}
+const escape = (s) => String(s ?? '').replace(/[&<>"]/g, (c) =>
+  ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+
+// Trip photography. Each trip is matched to the closest shot the program has.
+// There are five photos for six open trips, so one pair is knowingly shared
+// (see the comment below); a trip with no entry falls back to the rotation.
+const PHOTOS = {
+  'Whale Watching Kayak Tour':      'alpine-lake',
+  'Hike Dewey Point':               'snow-reflection',
+  'Camp Yosemite Valley':           'winter-forest',
+  'Intro to Backpacking':           'creek-rest',
+  'Indoor Rock Climbing | Alpine':  'gorge-overlook',
+  'Joshua Tree Stargazing':         'gorge-overlook',   // shared: no desert shot yet
+  'Explore Yosemite in the Winter': 'snow-reflection',
+  'Explore Santa Cruz':             'creek-rest',
+  'Hike Gaylor Lakes':              'alpine-lake',
+  'Hike Lembert Dome and Dog Lake': 'winter-forest',
+};
+const FALLBACK = ['alpine-lake', 'winter-forest', 'gorge-overlook', 'creek-rest', 'snow-reflection'];
+const photoFor = (t) => '/brand/photos/'
+  + (PHOTOS[t.name] || FALLBACK[Number(t.trip_id) % FALLBACK.length]) + '.jpg';
+
+// ------------------------------------------------------------------ the API
+function headersFor(as) {
+  const role = as?.role ?? state.role;
+  const id = as ? as.id : state.id;
+  const h = { 'Content-Type': 'application/json', 'X-Role': role };
+  if (id) h['X-User-Id'] = String(id);
+  return h;
+}
+
+async function api(method, path, body, { as } = {}) {
+  const h = headersFor(as);
+  let res, data;
+  try {
+    res = await fetch(path, { method, headers: h, body: body ? JSON.stringify(body) : undefined });
+    const text = await res.text();
+    data = text ? JSON.parse(text) : null;
+  } catch (err) {
+    log({ method, path, status: 0, data: { error: String(err) }, role: h['X-Role'] });
+    throw err;
+  }
+  log({ method, path, status: res.status, data, role: h['X-Role'], userId: h['X-User-Id'] });
+  return { status: res.status, ok: res.ok, data };
+}
+
+function log({ method, path, status, data, role, userId }) {
+  const kind = status >= 200 && status < 300 ? 'ok' : (status === 409 ? 'rule' : 'err');
+  const div = document.createElement('div');
+  div.className = 'entry ' + kind;
+  const who = role + (userId ? ':' + userId : '');
+  const note = kind === 'rule' ? ' rule refused' : (kind === 'err' ? ' denied' : '');
+  div.innerHTML = `<div class="line"><span><b>${method}</b> ${escape(path)}</span>
+      <span>${status}${note}</span></div>
+      <div class="body">as ${escape(who)}\n${escape(summarise(data))}</div>`;
+  el('log').prepend(div);
+}
+
+function summarise(data) {
+  if (data == null) return '(no body)';
+  if (data.error) return data.error;
+  const json = JSON.stringify(data, null, 1);
+  return json.length > 900 ? json.slice(0, 900) + ' ...' : json;
+}
+
+// ----------------------------------------------------------- table renderer
+function table(rows, columns) {
+  if (!rows || !rows.length) return '<p class="empty">nothing to show</p>';
+  const cols = columns || Object.keys(rows[0]);
+  const head = cols.map((c) => `<th>${escape(label(c))}</th>`).join('');
+  const body = rows.map((r) => '<tr>' + cols.map((c) => `<td>${cell(c, r[c])}</td>`).join('') + '</tr>').join('');
+  return `<table><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table>`;
+}
+const label = (c) => c.replace(/_/g, ' ').replace(/ cents$/, ' ($)');
+function cell(key, value) {
+  if (value === null || value === undefined) return '<span style="color:var(--muted)">-</span>';
+  if (key === 'status' || key === 'urgency') return `<span class="pill ${escape(value)}">${escape(value)}</span>`;
+  if (key.endsWith('_cents')) return '$' + (Number(value) / 100).toFixed(2);
+  if (typeof value === 'boolean') return value ? 'yes' : 'no';
+  if (typeof value === 'object') return `<span class="mono">${escape(JSON.stringify(value))}</span>`;
+  if (key.endsWith('_at') && typeof value === 'string' && value.includes('T'))
+    return escape(value.replace('T', ' ').slice(0, 16));
+  return escape(value);
+}
+
+const money = (cents) => cents ? '$' + (Number(cents) / 100).toFixed(0) : 'Free';
+// timestamptz values arrive as UTC ISO strings; show them in the reader's zone
+const when = (ts) => ts ? new Date(ts).toLocaleString('en-US',
+  { month: 'short', day: 'numeric', hour: 'numeric', minute: '2-digit' }) : '';
+const DAY = { month: 'short', day: 'numeric' };
+function dateRange(a, b) {
+  const f = (d) => new Date(d + 'T12:00:00').toLocaleDateString('en-US', DAY);
+  const year = new Date(a + 'T12:00:00').getFullYear();
+  return a === b ? `${f(a)}, ${year}` : `${f(a)} to ${f(b)}, ${year}`;
+}
+
+// =========================================================== identity / views
+function showSite() {
+  el('site').hidden = false; el('console').hidden = true;
+  el('logCarrier').appendChild(el('log'));   // the log is a console feature
+  renderSite();
+}
+function showConsole() {
+  el('site').hidden = true; el('console').hidden = false;
+  el('logHost').appendChild(el('log'));
+  el('consoleWho').innerHTML = `Signed in as <b>${escape(state.name || state.role)}</b>`;
+  applyRoleTabs();
+  loadTrips();
+}
+
+// One role per session, so the console only shows the tabs that role can use.
+function applyRoleTabs() {
+  let first = null;
+  for (const b of el('tabs').children) {
+    const allowed = b.dataset.roles.split(' ').includes(state.role);
+    b.hidden = !allowed;
+    if (allowed && !first) first = b.dataset.tab;
+  }
+  selectTab(first);
+}
+
+let pendingRole = null;
+
+function openSignIn() {
+  pendingRole = null;
+  el('siTitle').textContent = 'Sign in';
+  el('siRoles').hidden = false;
+  el('siPeople').hidden = true;
+  el('signin').hidden = false;
+}
+const closeSignIn = () => { el('signin').hidden = true; };
+
+// Staff carry no identity, so they go straight in. A student or guide has to be
+// a particular person, because the API scopes everything to their id.
+el('siRoles').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-signrole]');
+  if (!b) return;
+  const choice = b.dataset.signrole;
+  if (choice === 'staff') return signInAs('staff', null, 'OEP staff');
+  pendingRole = choice === 'student' ? 'member' : 'guide';
+  const list = pendingRole === 'member' ? state.members : state.guides;
+  el('siTitle').textContent = choice === 'student' ? 'Which student?' : 'Which guide?';
+  el('siPeople').innerHTML = list.map((x) =>
+    `<button class="person" data-person="${x.id}">${escape(x.name)}</button>`).join('');
+  el('siRoles').hidden = true;
+  el('siPeople').hidden = false;
+});
+
+el('siPeople').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-person]');
+  if (!b) return;
+  const id = Number(b.dataset.person);
+  const list = pendingRole === 'member' ? state.members : state.guides;
+  signInAs(pendingRole, id, list.find((x) => x.id === id)?.name ?? '');
+});
+
+async function signInAs(role, id, name) {
+  state.role = role; state.id = id; state.name = name;
+  saveSession();
+  closeSignIn();
+  if (role === 'member') await refreshMyRegs();
+  showConsole();
+}
+
+// no Cancel button: the backdrop and Escape both dismiss
+el('signin').addEventListener('click', (e) => { if (e.target.id === 'signin') closeSignIn(); });
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSignIn(); });
+
+el('siteSignIn').onclick = () => openSignIn();
+el('toTop').onclick = () => window.scrollTo({ top: 0, behavior: 'smooth' });
+el('logOut').onclick = async () => {
+  clearSession();
+  state.role = 'guest'; state.id = null; state.name = null;
+  state.myRegs = {}; state.mine = null;
+  await loadTrips();
+  showSite();
+};
+el('clearLog').onclick = () => { el('log').innerHTML = ''; };
+
+// ================================================================ site views
+async function refreshMyRegs() {
+  state.myRegs = {};
+  if (state.role !== 'member') return;
+  const { data, ok } = await api('GET', '/me/registrations');
+  if (!ok) return;
+  state.mine = data;
+  for (const r of data.registrations) state.myRegs[r.trip_id] = r;
+}
+
+function renderSite() {
+  const open = state.trips.filter((t) => t.status === 'open');
+  const spots = open.reduce((a, t) => a + t.spots_open, 0);
+  el('statband').innerHTML = [
+    [open.length, 'Trips open now'],
+    [spots, 'Spots still available'],
+  ].map(([n, l]) => `<div><span class="n">${n}</span><span class="l">${l}</span></div>`).join('');
+
+  el('tripCards').innerHTML = open.map((t) => tripCard(t, false)).join('') ||
+    '<p class="empty">No trips are open right now.</p>';
+}
+
+// The same cards, but live: this is the page a student lands on after signing in.
+function renderStudentCards() {
+  const open = state.trips.filter((t) => t.status === 'open');
+  el('consoleCards').innerHTML = open.map((t) => tripCard(t, true)).join('') ||
+    '<p class="empty">No trips are open right now.</p>';
+}
+
+function tripCard(t, live) {
+  const mine = live ? state.myRegs[t.trip_id] : null;
+  const full = t.is_full;
+  const pct = Math.min(100, Math.round(100 * t.confirmed / t.capacity));
+  const seats = full ? '' : `<b>${t.spots_open}</b> of ${t.capacity} spots left`;
+
+  let action;
+  if (mine && ['confirmed', 'waitlisted'].includes(mine.status)) {
+    action = `<button class="plain" disabled>${mine.status === 'confirmed'
+      ? 'You are going' : 'Waitlisted #' + (mine.waitlist_position ?? '?')}</button>`;
+  } else if (!live) {
+    action = `<button class="plain" data-signin="1">${
+      full ? 'Sign in to waitlist' : 'Sign in to register'}</button>`;
+  } else {
+    action = `<button ${full ? 'class="gold"' : ''} data-register="${t.trip_id}">${
+      full ? 'Join waitlist' : 'Register'}</button>`;
+  }
+
+  return `<article class="card">
+    <div class="shot">
+      <img src="${photoFor(t)}" alt="">
+      <div class="tags">
+        <span>${escape(t.difficulty)}</span>
+        <span class="${full ? 'full' : 'open'}">${full ? 'Waitlist' : 'Open'}</span>
+      </div>
+    </div>
+    <div class="body">
+      <h3>${escape(t.name)}</h3>
+      <div class="when">${escape(dateRange(t.start_date, t.end_date))}
+        &middot; ${escape(t.destination || '')}</div>
+      <div class="meter"><i class="${full ? 'full' : ''}" style="width:${pct}%"></i></div>
+      <div class="facts">
+        ${seats ? `<span>${seats}</span>` : ''}
+        <span><b>${money(t.fee_cents)}</b></span>
+      </div>
+      <div class="act">${action}</div>
+    </div>
+  </article>`;
+}
+
+function notice(text, kind) {
+  el('studentNotice').innerHTML = `<div class="notice ${kind || ''}">${escape(text)}</div>`;
+}
+
+el('tripCards').addEventListener('click', (e) => {
+  if (e.target.closest('[data-signin]')) openSignIn();
+});
+
+el('consoleCards').addEventListener('click', async (e) => {
+  const r = e.target.closest('[data-register]');
+  if (!r) return;
+  r.disabled = true;
+  const { data, status } = await api('POST', '/registrations', { trip_id: Number(r.dataset.register) });
+  if (status === 201) {
+    notice(data.status === 'waitlisted'
+      ? `This trip is full, so you are number ${data.waitlist_position} on the waitlist. If someone cancels you move up automatically.`
+      : 'You are registered. See My trips below for the details.',
+      data.status === 'waitlisted' ? 'wait' : '');
+  } else {
+    notice(data.error || 'That did not work.', 'bad');
+  }
+  await refreshMyRegs();
+  await loadTrips();
+});
+
+function renderMyTrips() {
+  const regs = state.mine?.registrations ?? [];
+  if (!regs.length) {
+    el('consoleMyTrips').innerHTML = '<p class="empty">You have not registered for anything yet.</p>';
+    return;
+  }
+  el('consoleMyTrips').innerHTML = regs.map((r) => {
+    const live = ['confirmed', 'waitlisted'].includes(r.status);
+    const where = r.status === 'waitlisted'
+      ? `Waitlist position ${r.waitlist_position ?? '?'}`
+      : r.status.replace('_', ' ');
+    const meeting = r.pre_trip_meeting_at
+      ? ` &middot; pre-trip meeting ${escape(when(r.pre_trip_meeting_at))}` : '';
+    return `<div class="mytrip ${r.status}">
+      <div>
+        <h4>${escape(r.trip_name)}</h4>
+        <div class="meta">${escape(dateRange(r.start_date, r.end_date))} &middot;
+          <b>${escape(where)}</b> &middot; ${escape(r.payment_status)}${meeting}</div>
+      </div>
+      <div class="act">${live
+        ? `<button class="danger sm" data-cancel="${r.id}">Cancel</button>` : ''}</div>
+    </div>`;
+  }).join('');
+}
+
+el('consoleMyTrips').addEventListener('click', async (e) => {
+  const c = e.target.closest('[data-cancel]');
+  if (!c) return;
+  const { data, ok } = await api('DELETE', `/registrations/${c.dataset.cancel}`,
+    { reason: 'cancelled by the member' });
+  if (ok) {
+    alert(data.promoted_from_waitlist
+      ? 'Cancelled. The next person on the waitlist was moved up automatically.'
+      : 'Cancelled.');
+  }
+  await refreshMyRegs();
+  renderMyTrips();
+  await loadTrips();
+});
+
+// ============================================================ staff console
+function selectTab(name) {
+  const btn = [...el('tabs').children].find((b) => b.dataset.tab === name);
+  if (!btn || btn.hidden) return;
+  for (const b of el('tabs').children) b.setAttribute('aria-selected', String(b === btn));
+  for (const p of document.querySelectorAll('[data-panel]')) p.hidden = p.dataset.panel !== name;
+  if (name === 'me') renderMe();
+  if (name === 'dashboard') loadDashboard();
+  if (name === 'browse') renderStudentCards();
+  if (name === 'mytrips') refreshMyRegs().then(renderMyTrips);
+}
+el('tabs').addEventListener('click', (e) => {
+  const btn = e.target.closest('button[data-tab]');
+  if (!btn) return;
+  location.hash = btn.dataset.tab;      // tabs are linkable: /#reports
+  selectTab(btn.dataset.tab);
+});
+window.addEventListener('hashchange', () => selectTab(location.hash.slice(1)));
+
+// --------------------------------------------------------------- trips tab
+async function loadTrips() {
+  const from = el('pastToo')?.checked ? '?from=2000-01-01' : '';
+  const { data } = await api('GET', '/trips' + from);
+  state.trips = Array.isArray(data) ? data : [];
+  if (el('console').hidden) return renderSite();
+  if (state.role === 'member') return renderStudentCards();
+
+  const rows = state.trips.map((t) => ({
+    id: t.trip_id, name: t.name,
+    dates: t.start_date + (t.end_date !== t.start_date ? ' to ' + t.end_date : ''),
+    difficulty: t.difficulty, status: t.status,
+    seats: `${t.confirmed}/${t.capacity}`, waitlisted: t.waitlisted,
+    fee_cents: t.fee_cents, cert: t.required_certification || '',
+  }));
+  el('tripsTable').innerHTML = table(rows);
+  const tbody = el('tripsTable').querySelector('tbody');
+  if (tbody) {
+    el('tripsTable').querySelector('thead tr').insertAdjacentHTML('beforeend', '<th></th>');
+    [...tbody.rows].forEach((tr, i) => {
+      const t = state.trips[i];
+      const canRegister = state.role !== 'guide' && t.status === 'open';
+      tr.insertAdjacentHTML('beforeend',
+        `<td style="white-space:nowrap">
+           <button class="plain sm" data-detail="${t.trip_id}">open</button>
+           ${canRegister ? `<button class="sm" data-register="${t.trip_id}">register</button>` : ''}
+         </td>`);
+    });
+  }
+  fillSelects();
+}
+
+el('tripsTable').addEventListener('click', async (e) => {
+  const d = e.target.closest('[data-detail]');
+  const r = e.target.closest('[data-register]');
+  if (d) return showTrip(d.dataset.detail);
+  if (r) {
+    const body = { trip_id: Number(r.dataset.register) };
+    if (state.role === 'staff') {
+      const m = prompt('member id to register (staff acts for a member)', state.members[0]?.id);
+      if (!m) return;
+      body.member_id = Number(m);
+    }
+    const { data, status } = await api('POST', '/registrations', body);
+    if (status === 201) {
+      alert(data.status === 'waitlisted'
+        ? `Trip is full. Waitlisted at position ${data.waitlist_position}.` : 'Confirmed.');
+    }
+    await loadTrips();
+  }
+});
+
+async function showTrip(id) {
+  const { data: t } = await api('GET', `/trips/${id}`);
+  if (!t || t.error) return;
+  let html = `<h3>${escape(t.name)} <span class="pill ${escape(t.status)}">${escape(t.status)}</span></h3>
+    <p class="hint">${escape(t.destination || '')} &middot; ${escape(t.start_date)} to ${escape(t.end_date)}
+       &middot; ${t.confirmed}/${t.capacity} confirmed, ${t.waitlisted} waitlisted
+       ${t.required_certification ? '&middot; requires ' + escape(t.required_certification) : ''}</p>
+    <h3>Guides</h3>${table(t.guides, ['guide_id', 'name', 'role'])}
+    <h3>Equipment</h3>${table(t.equipment, ['name', 'quantity', 'checked_out_at', 'checked_in_at', 'return_condition'])}`;
+
+  const roster = await api('GET', `/trips/${id}/roster`);
+  if (roster.ok) {
+    html += `<h3>Roster</h3>${table(roster.data.roster, ['registration_id', 'member_name', 'status', 'payment_status', 'attended_pre_trip_meeting'])}
+      <h3>Waitlist (in order)</h3>${table(roster.data.waitlist, ['position', 'registration_id', 'member_name', 'registered_at'])}`;
+  } else {
+    html += `<h3>Roster</h3><p class="empty">${escape(roster.data?.error || 'not visible to this role')}</p>`;
+  }
+  el('tripDetail').innerHTML = html;
+  el('tripDetail').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+// ------------------------------------------------------------- my view tab
+async function renderMe() {
+  const box = el('meBody');
+  if (state.role === 'staff') {
+    box.innerHTML = '<p class="empty">Switch to a member or a guide to see their own view.</p>';
+    return;
+  }
+  if (state.role === 'member') {
+    const { data, ok } = await api('GET', '/me/registrations');
+    if (!ok) return void (box.innerHTML = `<p class="empty">${escape(data.error)}</p>`);
+    box.innerHTML = `<h3>${escape(data.member.member_name)}</h3>
+      ${table([data.member], ['membership_type', 'membership_status', 'registrations', 'trips_completed',
+        'currently_waitlisted', 'no_shows', 'total_paid_cents', 'refunded_cents'])}
+      <h3>Registrations</h3>
+      <div class="scroll">${table(data.registrations, ['id', 'trip_name', 'start_date', 'status',
+        'waitlist_position', 'payment_status', 'attended_pre_trip_meeting'])}</div>`;
+    const tb = box.querySelector('table:last-of-type tbody');
+    if (tb) {
+      box.querySelector('table:last-of-type thead tr').insertAdjacentHTML('beforeend', '<th></th>');
+      [...tb.rows].forEach((tr, i) => {
+        const reg = data.registrations[i];
+        const live = ['confirmed', 'waitlisted'].includes(reg.status);
+        tr.insertAdjacentHTML('beforeend', live
+          ? `<td><button class="danger sm" data-cancel="${reg.id}">cancel</button></td>` : '<td></td>');
+      });
+    }
+    return;
+  }
+  const [certs, trips] = await Promise.all([api('GET', '/me/certifications'), api('GET', '/me/trips')]);
+  box.innerHTML = `<h3>My certifications</h3>
+    ${table(certs.data, ['code', 'certification', 'issued_on', 'expires_on', 'days_until_expiry', 'currently_valid'])}
+    <h3>My trips</h3>
+    <div class="scroll">${table(trips.data, ['trip_id', 'name', 'start_date', 'role', 'status',
+      'confirmed', 'capacity', 'waitlisted', 'required_certification'])}</div>
+    <p class="hint">Open a trip on the Trips tab to see its roster.</p>`;
+}
+
+el('meBody').addEventListener('click', async (e) => {
+  const c = e.target.closest('[data-cancel]');
+  if (!c) return;
+  const { data, ok } = await api('DELETE', `/registrations/${c.dataset.cancel}`,
+    { reason: 'cancelled from the console' });
+  if (ok) {
+    alert(data.promoted_from_waitlist
+      ? `Cancelled. Registration ${data.promoted_from_waitlist.id} was promoted automatically.`
+      : 'Cancelled. Nobody was waiting.');
+  }
+  renderMe(); loadTrips();
+});
+
+// ----------------------------------------------------------- staff tooling
+function fillSelects() {
+  const tripOpts = state.trips.map((t) => `<option value="${t.trip_id}">${escape(t.name)}</option>`).join('');
+  for (const id of ['agTrip', 'eqTrip']) if (el(id)) el(id).innerHTML = tripOpts;
+  if (el('agGuide')) el('agGuide').innerHTML =
+    state.guides.map((g) => `<option value="${g.id}">${escape(g.name)}</option>`).join('');
+  if (el('eqItem')) el('eqItem').innerHTML =
+    state.equipment.map((e) => `<option value="${e.equipment_id ?? e.id}">${escape(e.name)}</option>`).join('');
+  if (el('ntCert')) el('ntCert').innerHTML = '<option value="">no certification required</option>' +
+    state.certs.map((c) => `<option value="${c.id}">${escape(c.code)} - ${escape(c.name)}</option>`).join('');
+}
+
+el('assignGuide').onclick = () => api('POST', `/trips/${el('agTrip').value}/guides`,
+  { guide_id: Number(el('agGuide').value), role: el('agRole').value },
+  { as: { role: 'staff' } }).then(loadTrips);
+
+el('reserveEq').onclick = () => api('POST', `/trips/${el('eqTrip').value}/equipment`,
+  { equipment_id: Number(el('eqItem').value), quantity: Number(el('eqQty').value) },
+  { as: { role: 'staff' } });
+
+el('checkAvail').onclick = async () => {
+  const { data } = await api('GET', `/equipment?from=${el('availFrom').value}&to=${el('availTo').value}`,
+    null, { as: { role: 'staff' } });
+  el('availTable').innerHTML = table(Array.isArray(data) ? data : [],
+    ['name', 'category', 'total_quantity', 'committed', 'available', 'condition']);
+};
+
+el('loadCommit').onclick = async () => {
+  const { data } = await api('GET', '/equipment/commitments', null, { as: { role: 'staff' } });
+  const rows = Array.isArray(data) ? data : [];
+  el('commitTable').innerHTML = table(rows,
+    ['checkout_id', 'name', 'trip_name', 'start_date', 'quantity',
+     'checked_out_at', 'checked_in_at', 'return_condition']);
+  const tb = el('commitTable').querySelector('tbody');
+  if (!tb) return;
+  el('commitTable').querySelector('thead tr').insertAdjacentHTML('beforeend', '<th></th>');
+  [...tb.rows].forEach((tr, i) => {
+    const r = rows[i];
+    const action = !r.checked_out_at ? `<button class="sm" data-out="${r.checkout_id}">check out</button>`
+      : (!r.checked_in_at ? `<button class="plain sm" data-in="${r.checkout_id}">check in</button>` : '');
+    tr.insertAdjacentHTML('beforeend', `<td style="white-space:nowrap">${action}</td>`);
+  });
+};
+
+el('commitTable').addEventListener('click', async (e) => {
+  const out = e.target.closest('[data-out]'), back = e.target.closest('[data-in]');
+  if (out) await api('POST', `/equipment/checkouts/${out.dataset.out}/check-out`, {}, { as: { role: 'staff' } });
+  if (back) {
+    const cond = prompt('return condition: good, fair, poor, damaged, lost', 'good');
+    if (!cond) return;
+    await api('POST', `/equipment/checkouts/${back.dataset.in}/check-in`,
+      { return_condition: cond }, { as: { role: 'staff' } });
+  }
+  if (out || back) el('loadCommit').click();
+});
+
+el('createTrip').onclick = async () => {
+  await api('POST', '/trips', {
+    name: el('ntName').value || 'Untitled trip', destination: el('ntDest').value,
+    difficulty: el('ntDiff').value, start_date: el('ntStart').value, end_date: el('ntEnd').value,
+    capacity: Number(el('ntCap').value), fee_cents: Number(el('ntFee').value),
+    required_certification_id: el('ntCert').value ? Number(el('ntCert').value) : null,
+    pre_trip_meeting_at: el('ntMeeting').value || null,
+  }, { as: { role: 'staff' } });
+  await loadTrips();
+};
+
+el('runSweep').onclick = async () => {
+  const { data } = await api('POST', '/admin/process-pre-trip-meetings',
+    { as_of: el('sweepAsOf').value ? new Date(el('sweepAsOf').value).toISOString() : null },
+    { as: { role: 'staff' } });
+  el('sweepOut').innerHTML = `<h3>Cancelled as no-shows</h3>${table(data.no_shows)}
+    <h3>Promoted from the waitlist</h3>${table(data.promotions)}`;
+  loadTrips();
+};
+
+el('applyOverride').onclick = () => {
+  let v = el('ovValue').value;
+  if (v === 'true' || v === 'false') v = v === 'true';
+  api('PATCH', `/registrations/${el('ovId').value}`, { [el('ovField').value]: v },
+    { as: { role: 'staff' } });
+};
+
+const REPORTS = [
+  ['trip-capacity', 'Capacity and waitlists'],
+  ['certifications-expiring?days=90', 'Certifications expiring'],
+  ['equipment-health', 'Equipment health'],
+  ['member-history', 'Member history'],
+  ['revenue', 'Revenue by month'],
+  ['dashboard', 'Dashboard'],
+];
+
+el('dashFilters').innerHTML = REPORTS.map(([path, name]) =>
+  `<button class="filter" data-rep="${path}" aria-pressed="true">${escape(name)}</button>`).join('');
+
+// The dashboard loads every report at once; the buttons filter what is shown.
+async function loadDashboard() {
+  el('reportOut').innerHTML = '<p class="empty">loading...</p>';
+  const results = await Promise.all(REPORTS.map(([path]) =>
+    api('GET', '/reports/' + path, null, { as: { role: 'staff' } })));
+  el('reportOut').innerHTML = REPORTS.map(([path, name], i) => {
+    const r = results[i];
+    const body = r.ok ? renderReport(path, r.data) : `<p class="empty">${escape(r.data?.error)}</p>`;
+    return `<section class="repsec" data-rep="${path}">
+      <h3 class="rephead">${escape(name)}</h3><div class="scroll">${body}</div></section>`;
+  }).join('');
+  applyDashFilters();
+}
+
+function applyDashFilters() {
+  const on = new Set([...el('dashFilters').children]
+    .filter((b) => b.getAttribute('aria-pressed') === 'true').map((b) => b.dataset.rep));
+  for (const sec of document.querySelectorAll('.repsec')) sec.hidden = !on.has(sec.dataset.rep);
+  el('noneOn')?.remove();
+  if (!on.size) el('reportOut').insertAdjacentHTML('afterbegin',
+    '<p class="empty" id="noneOn">Nothing selected. Turn a filter back on to see a report.</p>');
+}
+
+el('dashFilters').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-rep]');
+  if (!b) return;
+  b.setAttribute('aria-pressed', b.getAttribute('aria-pressed') === 'true' ? 'false' : 'true');
+  applyDashFilters();
+});
+
+function renderReport(kind, data) {
+  if (Array.isArray(data)) return table(data);
+  if (kind.startsWith('certifications')) return table(data.certifications);
+  if (kind === 'revenue') return table(data.months) +
+    `<p class="hint">collected in window: $${(data.collected_cents_total / 100).toFixed(2)}</p>`;
+  return Object.entries(data).map(([k, v]) => `<h3>${escape(label(k))}</h3>${table(v)}`).join('');
+}
+
+// ------------------------------------------------------------- rule tests
+const RULE_TESTS = [
+  ['Rule 1', 'Register a 4th person on a full trip (capacity 3)',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Hike Dewey Point');
+     const m = state.members.find((x) => x.name.startsWith('Kofi'));
+     return api('POST', '/registrations', { trip_id: t.trip_id, member_id: m.id }, { as: { role: 'staff' } });
+   }, 'expect 201 with status "waitlisted", not a 4th confirmed seat'],
+
+  ['Rule 1', 'Force a waitlisted registration to confirmed on a full trip',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Hike Dewey Point');
+     const { data } = await api('GET', `/trips/${t.trip_id}/roster`, null, { as: { role: 'staff' } });
+     const w = data.waitlist?.[0];
+     if (!w) return alert('nobody is waitlisted; run the previous test first');
+     return api('PATCH', `/registrations/${w.registration_id}`, { status: 'confirmed' }, { as: { role: 'staff' } });
+   }, 'expect 409: trip is at capacity'],
+
+  ['Rule 1', 'Cut a trip\'s capacity below its confirmed headcount',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Hike Dewey Point');
+     return api('PATCH', `/trips/${t.trip_id}`, { capacity: 1 }, { as: { role: 'staff' } });
+   }, 'expect 409'],
+
+  ['Rule 1', 'Register a suspended member',
+   async () => {
+     const m = state.members.find((x) => x.suspended);
+     const t = state.trips.find((x) => x.status === 'open' && !x.is_full);
+     return api('POST', '/registrations', { trip_id: t.trip_id, member_id: m.id }, { as: { role: 'staff' } });
+   }, 'expect 409'],
+
+  ['Rule 2', 'Cancel a confirmed seat and watch the waitlist promote',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Hike Dewey Point');
+     const { data } = await api('GET', `/trips/${t.trip_id}/roster`, null, { as: { role: 'staff' } });
+     const seat = data.roster.find((r) => r.status === 'confirmed');
+     const next = data.waitlist?.[0];
+     const res = await api('DELETE', `/registrations/${seat.registration_id}`,
+       { reason: 'rule test' }, { as: { role: 'staff' } });
+     alert(res.data.promoted_from_waitlist
+       ? `Promoted registration ${res.data.promoted_from_waitlist.id}` +
+         (next ? ` (was waitlist position 1: ${next.member_name})` : '')
+       : 'Nobody was waiting');
+     loadTrips();
+     return res;
+   }, 'expect 200 with promoted_from_waitlist filled in'],
+
+  ['Rule 3', 'Assign a guide with no WFR to a WFR trip',
+   async () => {
+     const t = state.trips.find((x) => x.required_certification === 'WFR');
+     const g = state.guides.find((x) => x.name.startsWith('Sam'));
+     return api('POST', `/trips/${t.trip_id}/guides`, { guide_id: g.id }, { as: { role: 'staff' } });
+   }, 'expect 409 naming the missing certification'],
+
+  ['Rule 3', 'Assign a guide whose WFR expires mid-trip',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Joshua Tree Stargazing');
+     const g = state.guides.find((x) => x.name.startsWith('Devon'));
+     return api('POST', `/trips/${t.trip_id}/guides`, { guide_id: g.id }, { as: { role: 'staff' } });
+   }, 'expect 409: valid through the trip end date is required'],
+
+  ['Rule 3', 'Move a trip past its lead guide\'s expiry date',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Indoor Rock Climbing | Alpine');
+     return api('PATCH', `/trips/${t.trip_id}`,
+       { start_date: '2027-07-01', end_date: '2027-07-02' }, { as: { role: 'staff' } });
+   }, 'expect 409'],
+
+  ['Rule 4', 'Reserve more tents than are free on overlapping dates',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Intro to Backpacking');
+     const k = state.equipment.find((x) => x.name === '4-Person Tent');
+     return api('POST', `/trips/${t.trip_id}/equipment`,
+       { equipment_id: k.equipment_id ?? k.id, quantity: 3 }, { as: { role: 'staff' } });
+   }, 'expect 409: 4 of 6 are committed to the overlapping Camp Yosemite Valley'],
+
+  ['Rule 4', 'Write off inventory that is already committed',
+   async () => {
+     const k = state.equipment.find((x) => x.name === '4-Person Tent');
+     return api('PATCH', `/equipment/${k.equipment_id ?? k.id}`,
+       { total_quantity: 3 }, { as: { role: 'staff' } });
+   }, 'expect 409'],
+
+  ['Rule 5', 'Run the no-show sweep for the seed meeting (2026-09-10)',
+   async () => {
+     const res = await api('POST', '/admin/process-pre-trip-meetings',
+       { as_of: '2026-09-11T15:00:00Z' }, { as: { role: 'staff' } });
+     alert(`${res.data.no_shows.length} cancelled as no-shows, ${res.data.promotions.length} promoted`);
+     loadTrips();
+     return res;
+   }, 'expect the non-attender cancelled and the waitlisted member promoted'],
+
+  ['Roles', 'Member reads another member\'s history',
+   async () => api('GET', '/members/2/registrations', null, { as: { role: 'member', id: 1 } }),
+   'expect 403'],
+
+  ['Roles', 'Guide reads a roster for a trip they are not on',
+   async () => {
+     const t = state.trips.find((x) => x.name === 'Indoor Rock Climbing | Alpine');
+     return api('GET', `/trips/${t.trip_id}/roster`, null, { as: { role: 'guide', id: 3 } });
+   }, 'expect 403'],
+
+  ['Roles', 'Member opens a staff report',
+   async () => api('GET', '/reports/revenue', null, { as: { role: 'member', id: 1 } }), 'expect 403'],
+
+  ['Roles', 'Guest tries to register without signing in',
+   async () => api('POST', '/registrations', { trip_id: state.trips[0]?.trip_id },
+     { as: { role: 'guest' } }), 'expect 403'],
+];
+
+function renderRuleTests() {
+  const groups = {};
+  for (const [group, title, fn, expect] of RULE_TESTS) (groups[group] ||= []).push([title, fn, expect]);
+  el('ruleTests').innerHTML = Object.entries(groups).map(([g, tests]) =>
+    `<h3>${escape(g)}</h3>` + tests.map(([title, , expect]) =>
+      `<div class="row" style="align-items:flex-start">
+         <button class="sm" data-test="${RULE_TESTS.findIndex((t) => t[1] === title)}">run</button>
+         <div><div>${escape(title)}</div><div class="hint" style="margin:0">${escape(expect)}</div></div>
+       </div>`).join('')).join('');
+}
+
+el('ruleTests').addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-test]');
+  if (!b) return;
+  b.disabled = true;
+  try { await RULE_TESTS[Number(b.dataset.test)][2](); }
+  catch (err) { alert('test could not run: ' + err.message); }
+  finally { b.disabled = false; }
+});
+
+// ------------------------------------------------------------------- boot
+(async function boot() {
+  // The pickers and the staff tooling need the staff-only lists. This is a test
+  // harness, so it reads them as staff regardless of who is signed in.
+  const asStaff = { as: { role: 'staff' } };
+  const [members, guides, equipment, certs] = await Promise.all([
+    api('GET', '/members', null, asStaff),
+    api('GET', '/guides', null, asStaff),
+    api('GET', '/equipment', null, asStaff),
+    api('GET', '/admin/certifications', null, asStaff),
+  ]);
+  state.members = (members.data || []).map((m) => ({
+    id: m.id, name: `${m.first_name} ${m.last_name}`,
+    suspended: m.membership_status !== 'active' }));
+  state.guides = (guides.data || []).map((g) => ({ id: g.id, name: `${g.first_name} ${g.last_name}` }));
+  state.equipment = equipment.data || [];
+  state.certs = certs.data || [];
+
+  renderRuleTests();
+
+  // Restore a saved session, but only if that person still exists: the seed can
+  // be reloaded underneath a stale browser tab.
+  const saved = readSession();
+  const known = saved?.role === 'staff' ? true
+    : saved && (saved.role === 'member' ? state.members : state.guides)
+        .some((x) => x.id === saved.id);
+  if (saved && known) {
+    state.role = saved.role; state.id = saved.id; state.name = saved.name;
+    if (saved.role === 'member') await refreshMyRegs();
+    await loadTrips();
+    showConsole();
+    return;
+  }
+  if (saved) clearSession();
+
+  await loadTrips();
+  showSite();
+  if (location.hash === '#staff') openSignIn();
+})();
+</script>
+</body>
+</html>

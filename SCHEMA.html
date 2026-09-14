@@ -1,0 +1,249 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>OEP+ Database Schema</title>
+<style>
+  body { background: #ffffff; color: #000000;
+         font-family: Arial, Helvetica, sans-serif; font-size: 11pt; line-height: 1.5;
+         max-width: 900px; margin: 0 auto; padding: 32px 24px 64px; }
+  h1 { font-size: 20pt; font-weight: bold; margin: 0 0 4px; }
+  h2 { font-size: 14pt; font-weight: bold; margin: 32px 0 8px; }
+  h3 { font-size: 11.5pt; font-weight: bold; margin: 22px 0 6px; }
+  p  { margin: 0 0 10px; }
+  .sub { margin-bottom: 24px; }
+  table { border-collapse: collapse; width: 100%; margin: 6px 0 16px;
+          font-size: 10pt; }
+  th, td { border: 1px solid #000000; padding: 5px 8px; text-align: left;
+           vertical-align: top; }
+  th { font-weight: bold; background: #f1f1f1; }
+  .w1 { width: 22%; } .w2 { width: 18%; } .w3 { width: 8%; } .w4 { width: 10%; }
+  @media print { body { padding: 0; max-width: none; } thead { display: table-header-group; }
+                 tr { page-break-inside: avoid; } h2, h3 { page-break-after: avoid; } }
+</style>
+</head>
+<body>
+
+<h1>OEP+ Database Schema</h1>
+<p class="sub">UC Merced Outdoor Experience Program. PostgreSQL 16, schema <b>oep</b>.
+9 tables, 8 views, 8 enum types.<br>
+Key column: PK = primary key, FK = foreign key, U = unique.</p>
+
+<h2>1. Enum types</h2>
+<table>
+<thead><tr><th class="w1">Type</th><th>Values</th><th class="w1">Used by</th></tr></thead>
+<tbody>
+<tr><td>membership_type</td><td>student | faculty | staff | alumni | community</td><td>members</td></tr>
+<tr><td>membership_status</td><td>active | suspended | expired</td><td>members</td></tr>
+<tr><td>difficulty_level</td><td>easy | moderate | strenuous</td><td>trips</td></tr>
+<tr><td>trip_status</td><td>draft | open | cancelled | completed</td><td>trips</td></tr>
+<tr><td>registration_status</td><td>confirmed | waitlisted | cancelled | completed | no_show</td><td>registrations</td></tr>
+<tr><td>payment_status</td><td>paid | refunded | waived</td><td>registrations</td></tr>
+<tr><td>equipment_condition</td><td>new | good | fair | poor | damaged | lost | retired</td><td>equipment, trip_equipment</td></tr>
+<tr><td>guide_role</td><td>lead | assistant | trainee</td><td>trip_guides</td></tr>
+</tbody>
+</table>
+
+<h2>2. Tables</h2>
+
+<h3>members</h3>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>serial</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>first_name</td><td>text</td><td>no</td><td></td><td>non-blank</td></tr>
+<tr><td>last_name</td><td>text</td><td>no</td><td></td><td>non-blank</td></tr>
+<tr><td>email</td><td>text</td><td>no</td><td>U</td><td>format-checked</td></tr>
+<tr><td>phone</td><td>text</td><td>yes</td><td></td><td></td></tr>
+<tr><td>membership_type</td><td>membership_type</td><td>no</td><td></td><td></td></tr>
+<tr><td>membership_status</td><td>membership_status</td><td>no</td><td></td><td>default 'active'</td></tr>
+<tr><td>joined_on</td><td>date</td><td>no</td><td></td><td>default CURRENT_DATE</td></tr>
+<tr><td>created_at</td><td>timestamptz</td><td>no</td><td></td><td>default now()</td></tr>
+</tbody>
+</table>
+
+<h3>guides</h3>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>serial</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>first_name</td><td>text</td><td>no</td><td></td><td>non-blank</td></tr>
+<tr><td>last_name</td><td>text</td><td>no</td><td></td><td>non-blank</td></tr>
+<tr><td>email</td><td>text</td><td>no</td><td>U</td><td></td></tr>
+<tr><td>phone</td><td>text</td><td>yes</td><td></td><td></td></tr>
+<tr><td>hired_on</td><td>date</td><td>no</td><td></td><td>default CURRENT_DATE</td></tr>
+<tr><td>active</td><td>boolean</td><td>no</td><td></td><td>default true</td></tr>
+<tr><td>created_at</td><td>timestamptz</td><td>no</td><td></td><td>default now()</td></tr>
+</tbody>
+</table>
+
+<h3>certifications</h3>
+<p>Reusable catalog. A certification type is not tied to one guide.</p>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>serial</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>code</td><td>text</td><td>no</td><td>U</td><td>WFR, SPI, AVY1</td></tr>
+<tr><td>name</td><td>text</td><td>no</td><td></td><td></td></tr>
+<tr><td>issuing_body</td><td>text</td><td>yes</td><td></td><td>NOLS, AMGA, ACA</td></tr>
+<tr><td>description</td><td>text</td><td>yes</td><td></td><td></td></tr>
+<tr><td>validity_months</td><td>int</td><td>yes</td><td></td><td>&gt; 0</td></tr>
+</tbody>
+</table>
+
+<h3>trips</h3>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>serial</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>name</td><td>text</td><td>no</td><td></td><td>non-blank</td></tr>
+<tr><td>destination</td><td>text</td><td>yes</td><td></td><td></td></tr>
+<tr><td>description</td><td>text</td><td>yes</td><td></td><td></td></tr>
+<tr><td>difficulty</td><td>difficulty_level</td><td>no</td><td></td><td></td></tr>
+<tr><td>start_date</td><td>date</td><td>no</td><td></td><td></td></tr>
+<tr><td>end_date</td><td>date</td><td>no</td><td></td><td>&gt;= start_date</td></tr>
+<tr><td>capacity</td><td>int</td><td>no</td><td></td><td>&gt; 0</td></tr>
+<tr><td>fee_cents</td><td>int</td><td>no</td><td></td><td>&gt;= 0, default 0</td></tr>
+<tr><td>required_certification_id</td><td>int</td><td>yes</td><td>FK</td><td>to certifications.id</td></tr>
+<tr><td>pre_trip_meeting_at</td><td>timestamptz</td><td>yes</td><td></td><td>null = no mandatory meeting</td></tr>
+<tr><td>meeting_processed_at</td><td>timestamptz</td><td>yes</td><td></td><td>set by the no-show sweep</td></tr>
+<tr><td>status</td><td>trip_status</td><td>no</td><td></td><td>default 'open'</td></tr>
+<tr><td>created_at</td><td>timestamptz</td><td>no</td><td></td><td>default now()</td></tr>
+</tbody>
+</table>
+
+<h3>equipment</h3>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>serial</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>name</td><td>text</td><td>no</td><td>U</td><td>unique together with category</td></tr>
+<tr><td>category</td><td>text</td><td>no</td><td>U</td><td>unique together with name</td></tr>
+<tr><td>total_quantity</td><td>int</td><td>no</td><td></td><td>&gt;= 0</td></tr>
+<tr><td>condition</td><td>equipment_condition</td><td>no</td><td></td><td>default 'good'</td></tr>
+<tr><td>purchased_on</td><td>date</td><td>yes</td><td></td><td></td></tr>
+<tr><td>notes</td><td>text</td><td>yes</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3>registrations</h3>
+<p>Joins members to trips. One row per member per trip: UNIQUE (trip_id, member_id).</p>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>serial</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>trip_id</td><td>int</td><td>no</td><td>FK, U</td><td>to trips.id, on delete cascade</td></tr>
+<tr><td>member_id</td><td>int</td><td>no</td><td>FK, U</td><td>to members.id, on delete restrict</td></tr>
+<tr><td>status</td><td>registration_status</td><td>no</td><td></td><td>default 'confirmed'</td></tr>
+<tr><td>registered_at</td><td>timestamptz</td><td>no</td><td></td><td>default clock_timestamp()</td></tr>
+<tr><td>confirmed_at</td><td>timestamptz</td><td>yes</td><td></td><td>used by the no-show sweep</td></tr>
+<tr><td>cancelled_at</td><td>timestamptz</td><td>yes</td><td></td><td></td></tr>
+<tr><td>cancel_reason</td><td>text</td><td>yes</td><td></td><td></td></tr>
+<tr><td>payment_status</td><td>payment_status</td><td>no</td><td></td><td>default 'paid'</td></tr>
+<tr><td>amount_paid_cents</td><td>int</td><td>no</td><td></td><td>&gt;= 0, set to the trip fee</td></tr>
+<tr><td>attended_pre_trip_meeting</td><td>boolean</td><td>no</td><td></td><td>default false</td></tr>
+</tbody>
+</table>
+
+<h3>trip_guides</h3>
+<p>Joins trips to guides. PRIMARY KEY (trip_id, guide_id). At most one lead guide per trip:
+UNIQUE (trip_id) WHERE role = 'lead'.</p>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>trip_id</td><td>int</td><td>no</td><td>PK, FK</td><td>to trips.id, on delete cascade</td></tr>
+<tr><td>guide_id</td><td>int</td><td>no</td><td>PK, FK</td><td>to guides.id, on delete restrict</td></tr>
+<tr><td>role</td><td>guide_role</td><td>no</td><td></td><td>default 'assistant'</td></tr>
+<tr><td>assigned_at</td><td>timestamptz</td><td>no</td><td></td><td>default now()</td></tr>
+</tbody>
+</table>
+
+<h3>trip_equipment</h3>
+<p>Joins trips to equipment. One row per item per trip: UNIQUE (trip_id, equipment_id).</p>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>id</td><td>identity</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>trip_id</td><td>int</td><td>no</td><td>FK, U</td><td>to trips.id, on delete cascade</td></tr>
+<tr><td>equipment_id</td><td>int</td><td>no</td><td>FK, U</td><td>to equipment.id, on delete restrict</td></tr>
+<tr><td>quantity</td><td>int</td><td>no</td><td></td><td>&gt; 0</td></tr>
+<tr><td>checked_out_at</td><td>timestamptz</td><td>yes</td><td></td><td></td></tr>
+<tr><td>checked_in_at</td><td>timestamptz</td><td>yes</td><td></td><td>&gt;= checked_out_at</td></tr>
+<tr><td>return_condition</td><td>equipment_condition</td><td>yes</td><td></td><td>only once checked in</td></tr>
+<tr><td>notes</td><td>text</td><td>yes</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h3>guide_certifications</h3>
+<p>Joins guides to certifications. PRIMARY KEY (guide_id, certification_id, issued_on),
+so re-certifying adds a row instead of overwriting the previous cycle.</p>
+<table>
+<thead><tr><th class="w1">Column</th><th class="w2">Type</th><th class="w3">Null</th><th class="w4">Key</th><th>Default / constraint</th></tr></thead>
+<tbody>
+<tr><td>guide_id</td><td>int</td><td>no</td><td>PK, FK</td><td>to guides.id, on delete cascade</td></tr>
+<tr><td>certification_id</td><td>int</td><td>no</td><td>PK, FK</td><td>to certifications.id, on delete restrict</td></tr>
+<tr><td>issued_on</td><td>date</td><td>no</td><td>PK</td><td></td></tr>
+<tr><td>expires_on</td><td>date</td><td>no</td><td></td><td>&gt; issued_on</td></tr>
+<tr><td>certificate_no</td><td>text</td><td>yes</td><td></td><td></td></tr>
+</tbody>
+</table>
+
+<h2>3. Relationships</h2>
+
+<h3>Many-to-many</h3>
+<table>
+<thead><tr><th class="w1">Relationship</th><th class="w2">Through</th><th class="w1">Grain</th><th>Attributes carried</th></tr></thead>
+<tbody>
+<tr><td>members &ndash; trips</td><td>registrations</td><td>one row per member per trip</td><td>status, payment, meeting attendance, registration and cancellation times</td></tr>
+<tr><td>guides &ndash; trips</td><td>trip_guides</td><td>one row per guide per trip</td><td>role; at most one lead per trip</td></tr>
+<tr><td>equipment &ndash; trips</td><td>trip_equipment</td><td>one row per item per trip</td><td>quantity, checkout and return times, return condition</td></tr>
+<tr><td>guides &ndash; certifications</td><td>guide_certifications</td><td>one row per guide, certification and issue date</td><td>validity window, certificate number</td></tr>
+</tbody>
+</table>
+
+<h3>Many-to-one</h3>
+<table>
+<thead><tr><th class="w1">Relationship</th><th class="w2">Via</th><th>Reading</th></tr></thead>
+<tbody>
+<tr><td>trips to certifications</td><td>trips.required_certification_id</td><td>Optional. A trip may require one certification; many trips may require the same one.</td></tr>
+</tbody>
+</table>
+
+<h3>One-to-many</h3>
+<table>
+<thead><tr><th class="w1">Parent</th><th class="w3">Cardinality</th><th class="w1">Child</th><th class="w2">Foreign key</th><th>On parent delete</th></tr></thead>
+<tbody>
+<tr><td>trips</td><td>1 to N</td><td>registrations</td><td>trip_id</td><td>cascade</td></tr>
+<tr><td>members</td><td>1 to N</td><td>registrations</td><td>member_id</td><td>restrict</td></tr>
+<tr><td>trips</td><td>1 to N</td><td>trip_guides</td><td>trip_id</td><td>cascade</td></tr>
+<tr><td>guides</td><td>1 to N</td><td>trip_guides</td><td>guide_id</td><td>restrict</td></tr>
+<tr><td>trips</td><td>1 to N</td><td>trip_equipment</td><td>trip_id</td><td>cascade</td></tr>
+<tr><td>equipment</td><td>1 to N</td><td>trip_equipment</td><td>equipment_id</td><td>restrict</td></tr>
+<tr><td>guides</td><td>1 to N</td><td>guide_certifications</td><td>guide_id</td><td>cascade</td></tr>
+<tr><td>certifications</td><td>1 to N</td><td>guide_certifications</td><td>certification_id</td><td>restrict</td></tr>
+<tr><td>certifications</td><td>1 to N</td><td>trips</td><td>required_certification_id</td><td>restrict</td></tr>
+</tbody>
+</table>
+<p>Anything belonging to a trip is removed with it. References to people, inventory and
+catalog entries are restricted, so a member, guide, equipment item or certification type
+that has history cannot be deleted.</p>
+
+<h2>4. Views</h2>
+<p>Derived from the tables above. They hold no data of their own.</p>
+<table>
+<thead><tr><th class="w1">View</th><th>Returns</th></tr></thead>
+<tbody>
+<tr><td>v_trip_capacity</td><td>Per trip: capacity, confirmed, spots_open, waitlisted, cancelled, no_shows, is_full</td></tr>
+<tr><td>v_waitlist</td><td>Waitlisted registrations with live position, in promotion order</td></tr>
+<tr><td>v_trip_roster</td><td>Registrations joined to member contact details</td></tr>
+<tr><td>v_certification_expiry</td><td>Latest cycle per guide and certification, days_until_expiry, urgency (expired, critical, warning, ok)</td></tr>
+<tr><td>v_equipment_health</td><td>Per item: times_returned, times_damaged, times_lost, damage_loss_rate_pct</td></tr>
+<tr><td>v_equipment_commitments</td><td>Per checkout row, with free_during_trip</td></tr>
+<tr><td>v_member_history</td><td>Per member: counts by status, total_paid_cents, refunded_cents</td></tr>
+<tr><td>v_revenue_by_month</td><td>Per month: trips, seats_sold, collected_cents, refunded_cents</td></tr>
+</tbody>
+</table>
+
+</body>
+</html>
